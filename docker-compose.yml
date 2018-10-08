@@ -1,0 +1,25 @@
+version: '3'
+services:
+  minepool:
+    tty: true
+    container_name: "pool"
+    build: "nodepool"
+    environment:
+    - NODE_ENV=production
+#    volumes:
+#    - ./nodepool:/usr/src/app
+    ports:
+    - "3333:3333"
+    - "3334:3334"
+    - "9229:9229"
+#  redis:
+#    image: redis:4.0.5-alpine
+#    command: ["redis-server", "--appendonly", "yes"]
+#    hostname: redis
+#    volumes:
+#    - ./redis-data:/data
+networks:
+  default:
+    # Use a custom driver
+    driver_opts:
+      com.docker.network.bridge.name: pool_test
